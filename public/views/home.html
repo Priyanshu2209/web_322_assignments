@@ -3,42 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lego Collection</title>
   <link href="/css/main.css" rel="stylesheet">
+  <title>Lego Collection</title>
 </head>
-<body>
-  <nav class="bg-gray-800 p-4">
-    <div class="container mx-auto flex justify-between">
-      <a href="/" class="text-white text-3xl">Lego Collection</a>
-      <ul class="flex space-x-4">
-        <li><a href="/about" class="text-white">About</a></li>
-        <li class="relative group">
-          <a href="#" class="text-white">Theme</a>
-          <ul class="absolute hidden group-hover:block bg-white shadow-lg">
-            <li><a href="/lego/sets?theme=technic" class="block px-4 py-2">Technic</a></li>
-            <li><a href="/lego/sets?theme=city" class="block px-4 py-2">City</a></li>
-            <li><a href="/lego/sets?theme=starwars" class="block px-4 py-2">Star Wars</a></li>
-          </ul>
-        </li>
-      </ul>
+<body class="bg-base-100">
+  <nav class="navbar bg-base-200 px-4">
+    <div class="flex-1">
+      <a href="/" class="text-lg font-bold">Lego Collection</a>
+    </div>
+    <div class="flex-none">
+      <a href="/about" class="btn btn-ghost">About</a>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost">Theme</label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a href="/lego/sets?theme=technic">Technic</a></li>
+          <li><a href="/lego/sets?theme=city">City</a></li>
+          <li><a href="/lego/sets?theme=star-wars">Star Wars</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <div class="container mx-auto my-8">
-    <div class="hero bg-blue-500 text-white p-8 rounded-lg">
-      <h1 class="text-4xl">Explore the Lego Collection!</h1>
-      <p>Browse our extensive range of Lego sets and find your next adventure.</p>
-      <a href="/lego/sets" class="btn bg-white text-blue-500 mt-4">Browse Sets</a>
+  <div class="container mx-auto">
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-lg">
+          <h1 class="text-5xl font-bold">Explore the Lego Collection</h1>
+          <p class="py-6">Discover amazing Lego sets and themes.</p>
+          <a href="/lego/sets" class="btn btn-primary">Browse Sets</a>
+        </div>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-      <div class="card bg-white shadow-lg p-4">
-        <img src="https://rebrickable.com/media/sets/001-1/1.jpg" alt="Set 001-1" class="w-full h-48 object-cover">
-        <h2 class="text-xl mt-2">Set 001-1</h2>
-        <p>A great classic Lego set from the early days.</p>
-        <a href="/lego/sets/001-1" class="btn mt-4">Learn More</a>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Example of a card -->
+      <div class="card shadow-xl">
+        <figure><img src="IMAGE_URL" alt="Lego Set"></figure>
+        <div class="card-body">
+          <h2 class="card-title">Lego Set Name</h2>
+          <p>Short description of the set.</p>
+          <div class="card-actions justify-end">
+            <a href="/lego/sets/001-1" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
       </div>
-      <!-- Add two more hardcoded sets here in a similar format -->
     </div>
   </div>
 </body>
