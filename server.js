@@ -1,56 +1,47 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const app = express();
 
-// Static content (CSS, images, etc.)
+// Serve static files from the "public" folder
 app.use(express.static('public'));
 
-// Home route
+// Route for home page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/home.html'));
+    res.sendFile(path.join(__dirname, 'views/home.html'));
 });
 
-// About route
+// Route for about page
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/about.html'));
+    res.sendFile(path.join(__dirname, 'views/about.html'));
 });
 
-// Lego sets route with optional theme query
+// Route for Lego sets (with optional theme query)
 app.get('/lego/sets', (req, res) => {
-  const theme = req.query.theme;
-  let legoSets = require('./data/setData');
-
-  if (theme) {
-    legoSets = legoSets.filter(set => set.theme === theme);
-  }
-
-  if (legoSets.length > 0) {
-    res.status(200).json(legoSets);
-  } else {
-    res.status(404).send('No Lego sets found for the specified theme.');
-  }
+    const theme = req.query.theme;
+    if (theme) {
+        // Return Lego sets based on theme
+        // Replace with actual data fetching logic
+        res.json({ theme });
+    } else {
+        // Return all Lego sets
+        // Replace with actual data fetching logic
+        res.json({ sets: [] });
+    }
 });
 
-// Lego set by set_num route
-app.get('/lego/sets/:set_num', (req, res) => {
-  const setNum = req.params.set_num;
-  const legoSets = require('./data/setData');
-  const legoSet = legoSets.find(set => set.set_num === setNum);
-
-  if (legoSet) {
-    res.status(200).json(legoSet);
-  } else {
-    res.status(404).send('Lego set not found.');
-  }
+// Route for individual Lego set
+app.get('/lego/sets/:id', (req, res) => {
+    const setId = req.params.id;
+    // Replace with actual data fetching logic
+    res.json({ set_num: setId });
 });
 
-// 404 Error page
+// 404 error handling
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+    res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
