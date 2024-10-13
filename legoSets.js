@@ -1,78 +1,57 @@
-/********************************************************************************
-*  WEB322 – Assignment 03
-* 
-*  I declare that this assignment is my own work in accordance with Seneca's
-*  Academic Integrity Policy:
-* 
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-*  Name: Priyanshu Rana Student ID: 141344234 Date: 12/10/2024
-*
-********************************************************************************/
+// Import the Lego sets and themes data from JSON files located in the data folder
+const setData = require('./data/setData.json');
+const themeData = require('./data/themeData.json');
 
+/**
+ * Get all Lego sets along with their corresponding theme names.
+ * @returns {Array} Array of Lego sets with theme names.
+ */
+const getAllSets = () => {
+  return setData.map(set => {
+    const theme = themeData.find(t => t.id === set.theme_id);
+    return {
+      ...set,
+      theme_name: theme ? theme.name : 'Unknown' // Include theme name or 'Unknown'
+    };
+  });
+};
 
+/**
+ * Get Lego sets filtered by theme name.
+ * @param {string} themeName - The name of the theme to filter by.
+ * @returns {Array} Array of Lego sets that belong to the specified theme.
+ */
+const getSetsByTheme = (themeName) => {
+  // Find the theme object based on the provided name (case-insensitive)
+  const themeObj = themeData.find(t => t.name.toLowerCase() === themeName.toLowerCase());
+  if (!themeObj) {
+    return []; // If theme not found, return an empty array
+  }
+  // Return sets that match the theme ID
+  return setData.filter(set => set.theme_id === themeObj.id);
+};
 
-// Import JSON files
-const setData = require("../web_322_assignments/data/setData.json");
-const themeData = require("../web_322_assignments/data/themeData");
+/**
+ * Get a specific Lego set by its set number.
+ * @param {string} setNumber - The set number to look for.
+ * @returns {Object|null} The Lego set object if found, or null if not found.
+ */
+const getSetBySetNumber = (setNumber) => {
+  const set = setData.find(s => s.set_num === setNumber);
+  if (!set) {
+    return null; // If set not found, return null
+  }
+  // Find the theme object for the set
+  const theme = themeData.find(t => t.id === set.theme_id);
+  return {
+    ...set,
+    theme_name: theme ? theme.name : 'Unknown' // Include theme name or 'Unknown'
+  };
+};
 
-// Initialize an empty array
-let sets = [];
-
-// Function to initialize sets array with theme data
-function initialize() {
-    return new Promise((resolve, reject) => {
-        try {
-            sets = setData.map(set => {
-                const theme = themeData.find(theme => theme.id === set.theme_id);
-                return { ...set, theme: theme ? theme.name : 'Unknown' }; // Add theme property
-            });
-            resolve();
-        } catch (error) {
-            reject("Error initializing sets: " + error.message);
-        }
-    });
-}
-
-// Function to get all sets
-function getAllSets() {
-    return new Promise((resolve, reject) => {
-        if (sets.length > 0) {
-            resolve(sets);
-        } else {
-            reject("No sets found");
-        }
-    });
-}
-
-// Function to get set by number
-function getSetByNum(setNum) {
-    return new Promise((resolve, reject) => {
-        const foundSet = sets.find(set => set.set_num === setNum);
-        if (foundSet) {
-            resolve(foundSet);
-        } else {
-            reject(`Set with number ${setNum} not found`);
-        }
-    });
-}
-
-// Function to get sets by theme
-function getSetsByTheme(theme) {
-    return new Promise((resolve, reject) => {
-        const matchingSets = sets.filter(set => set.theme.toLowerCase().includes(theme.toLowerCase()));
-        if (matchingSets.length > 0) {
-            resolve(matchingSets);
-        } else {
-            reject(`No sets found for theme: ${theme}`);
-        }
-    });
-}
-
-// Export functions
+// Export the functions for use in other modules
 module.exports = {
-    initialize,
-    getAllSets,
-    getSetByNum,
-    getSetsByTheme
+  getAllSets,
+  getSetsByTheme,
+  getSetBySetNumber
 };
