@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link href="/public/css/main.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <link href="/public/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="/">Lego Collection</a>
-        <a class="active" href="/about">About</a>
-        <div class="dropdown">
-            <button class="dropbtn">Theme</button>
-            <div class="dropdown-content">
-                <a href="/lego/sets?theme=theme1">Theme 1</a>
-                <a href="/lego/sets?theme=theme2">Theme 2</a>
-                <a href="/lego/sets?theme=theme3">Theme 3</a>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="container mx-auto">
-        <div class="hero">
-            <h1>About</h1>
-            <p>All about me</p>
-        </div>
-        
-        <div class="grid">
-            <div class="column">
-                <img src="/public/images/img1.jpg" alt="About Me Image">
-            </div>
-            <div class="column">
-                <p>Short blurb about yourself, hobbies, courses you're taking, etc.</p>
-            </div>
-        </div>
+  <nav class="navbar">
+    <a href="/">Lego Collection</a>
+    <a class="active" href="/about">About</a>
+    <div class="dropdown">
+      <button class="btn">Theme</button>
+      <div class="dropdown-content">
+        <a href="/lego/sets?theme=Technic">Technic</a>
+        <a href="/lego/sets?theme=Star Wars">Star Wars</a>
+        <a href="/lego/sets?theme=Creator">Creator</a>
+      </div>
     </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About Me</h1>
+      <p>All about my interests and what I’m currently working on.</p>
+    </div>
+  </section>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <img src="path/to/your-image.jpg" alt="Your Image">
+    </div>
+    <div>
+      <p>I’m currently taking web development courses and love building creative projects like this Lego collection!</p>
+    </div>
+  </div>
 </body>
 </html>

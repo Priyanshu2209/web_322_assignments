@@ -1,51 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lego Collection</title>
-    <link href="/public/css/main.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lego Collection</title>
+  <link href="/public/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="/">Lego Collection</a>
-        <a href="/about">About</a>
-        <div class="dropdown">
-            <button class="dropbtn">Theme</button>
-            <div class="dropdown-content">
-                <a href="/lego/sets?theme=theme1">Theme 1</a>
-                <a href="/lego/sets?theme=theme2">Theme 2</a>
-                <a href="/lego/sets?theme=theme3">Theme 3</a>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="container mx-auto">
-        <div class="hero">
-            <h1>Explore the Lego Collection</h1>
-            <a href="/lego/sets" class="btn">View Sets</a>
-        </div>
-        
-        <div class="grid">
-            <div class="card">
-                <img src="/public/images/img1.jpg" alt="Set 1 Image">
-                <h2>Set 1 Name</h2>
-                <p>Short description about Set 1.</p>
-                <a href="/lego/sets/set1-num" class="btn">View Set</a>
-            </div>
-            <div class="card">
-                <img src="/public/images/img2.jpg" alt="Set 2 Image">
-                <h2>Set 2 Name</h2>
-                <p>Short description about Set 2.</p>
-                <a href="/lego/sets/set2-num" class="btn">View Set</a>
-            </div>
-            <div class="card">
-                <img src="/public/images/img3.jpg" alt="Set 3 Image">
-                <h2>Set 3 Name</h2>
-                <p>Short description about Set 3.</p>
-                <a href="/lego/sets/set3-num" class="btn">View Set</a>
-            </div>
-        </div>
+  <nav class="navbar">
+    <a href="/">Lego Collection</a>
+    <a href="/about">About</a>
+    <div class="dropdown">
+      <button class="btn">Theme</button>
+      <div class="dropdown-content">
+        <a href="/lego/sets?theme=Technic">Technic</a>
+        <a href="/lego/sets?theme=Star Wars">Star Wars</a>
+        <a href="/lego/sets?theme=Creator">Creator</a>
+      </div>
     </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the Lego Collection!</h1>
+      <p>Explore our extensive collection of Lego sets.</p>
+      <a class="btn" href="/lego/sets">View Sets</a>
+    </div>
+  </section>
+  <div class="grid grid-cols-3 gap-4">
+    <!-- Hardcode 3 sets -->
+    <div class="card">
+      <img src="https://cdn.rebrickable.com/media/sets/010-3.jpg" alt="Basic Building Set">
+      <h2>Basic Building Set</h2>
+      <p>From 1968, a classic set with 77 parts.</p>
+      <a class="btn" href="/lego/sets/010-3">View Set</a>
+    </div>
+  </div>
 </body>
 </html>

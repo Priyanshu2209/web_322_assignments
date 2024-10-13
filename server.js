@@ -1,62 +1,42 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
+const path = require('path');
 
-app.use(express.static('public')); // Serve static files
+// Serve static files from the "public" directory
+app.use(express.static('public'));
 
-// Route for home page
+// Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/views/home.html'));
+  res.sendFile(path.join(__dirname, 'views/home.html'));
 });
 
-// Route for about page
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/views/about.html'));
+  res.sendFile(path.join(__dirname, 'views/about.html'));
 });
 
-// Dynamic route for LEGO sets based on theme query
+// Lego sets dynamic route
 app.get('/lego/sets', (req, res) => {
-    // Fetch sets from setData.json
-    fs.readFile(path.join(__dirname, 'data/setData.json'), 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Failed to read data' });
-        }
-        const sets = JSON.parse(data);
-        const theme = req.query.theme;
-
-        // Filter sets by theme if provided
-        const filteredSets = theme ? sets.filter(set => set.theme === theme) : sets;
-
-        res.json(filteredSets); // Send the filtered sets as a JSON response
-    });
+  const theme = req.query.theme;
+  // Logic to filter sets by theme and send response
+  if (theme) {
+    res.json({ message: `Lego sets for theme: ${theme}` });
+  } else {
+    res.json({ message: 'All Lego sets' });
+  }
 });
 
-// Dynamic route for individual LEGO set
-app.get('/lego/sets/:setNum', (req, res) => {
-    fs.readFile(path.join(__dirname, 'data/setData.json'), 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Failed to read data' });
-        }
-        const sets = JSON.parse(data);
-        const setNum = req.params.setNum;
-        const set = sets.find(s => s.setNum === setNum);
-
-        if (!set) {
-            return res.status(404).sendFile(path.join(__dirname, '/public/views/404.html'));
-        }
-
-        res.json(set); // Send the individual set as a JSON response
-    });
+// Route for specific set number
+app.get('/lego/sets/:set_num', (req, res) => {
+  const setNum = req.params.set_num;
+  res.json({ message: `Lego set details for: ${setNum}` });
 });
 
-// Handle 404 errors
+// 404 page
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '/public/views/404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
 });
 
-// Start server
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });

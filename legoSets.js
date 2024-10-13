@@ -1,20 +1,20 @@
 /********************************************************************************
-*  WEB322 – Assignment 02
+*  WEB322 – Assignment 03
 * 
 *  I declare that this assignment is my own work in accordance with Seneca's
 *  Academic Integrity Policy:
 * 
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-*  Name: Priyanshu Rana Student ID: 141344234 Date: 26/09/2024
+*  Name: Priyanshu Rana Student ID: 141344234 Date: 12/10/2024
 *
 ********************************************************************************/
 
 
 
 // Import JSON files
-const setData = require("../data/setData");
-const themeData = require("../data/themeData");
+const setData = require("../web_322_assignments/data/setData.json");
+const themeData = require("../web_322_assignments/data/themeData");
 
 // Initialize an empty array
 let sets = [];
