@@ -1,61 +1,35 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+const port = process.env.PORT || 3000;
 
-const setData = require("./data/setData");
-const themeData = require("./data/themeData");
-const legoSets = require('./legoSets'); // Assuming legoSets.js is in the root folder
+app.use(express.static('public')); // Serve static files
 
-// Middleware to serve static files from the public directory
-app.use(express.static('public'));
-
-// Initialize sets
-legoSets.initialize()
-    .then(() => {
-        console.log("LEGO sets initialized.");
-    })
-    .catch((error) => {
-        console.error("Initialization error:", error);
-    });
-
-// Routes
+// Route for home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'home.html'));
+    res.sendFile(__dirname + '/public/views/home.html');
 });
 
+// Route for about page
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'about.html'));
+    res.sendFile(__dirname + '/public/views/about.html');
 });
 
-// Handle sets and theme filtering
+// Dynamic route for LEGO sets based on theme query
 app.get('/lego/sets', (req, res) => {
-    const theme = req.query.theme;
-    if (theme) {
-        legoSets.getSetsByTheme(theme)
-            .then((sets) => res.json(sets))
-            .catch((error) => res.status(404).send(error));
-    } else {
-        legoSets.getAllSets()
-            .then((sets) => res.json(sets))
-            .catch((error) => res.status(404).send(error));
-    }
+    // Fetch sets based on theme query
 });
 
-// Handle individual set request
+// Dynamic route for individual LEGO set
 app.get('/lego/sets/:setNum', (req, res) => {
-    const setNum = req.params.setNum;
-    legoSets.getSetByNum(setNum)
-        .then((set) => res.json(set))
-        .catch((error) => res.status(404).send(error));
+    // Fetch individual LEGO set based on setNum
 });
 
-// Custom 404 page
+// Handle 404 errors
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.status(404).sendFile(__dirname + '/public/views/404.html');
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Start server
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
