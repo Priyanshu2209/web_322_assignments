@@ -51,7 +51,7 @@ app.get('/lego/sets', (req, res) => {
   }
 });
 
-// Route to return a specific Lego set by its set number
+
 app.get('/lego/sets/:set_num', (req, res) => {
   const setNum = req.params.set_num;
   const set = setData.find(s => s.set_num === setNum);
