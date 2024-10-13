@@ -1,16 +1,10 @@
 module.exports = {
-  content: [
-    './views/**/*.html',  // Watch HTML files in the "views" folder
-    './public/**/*.js',   // Watch JS files in the "public" folder
-  ],
+  content: ["./views/**/*.html", "./public/**/*.js"],
   theme: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('daisyui'),
-  ],
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
-    themes: ['fantasy'],  // You can choose a different theme if you like
+    themes: ["fantasy"], // Or any other theme you prefer
   },
 }
